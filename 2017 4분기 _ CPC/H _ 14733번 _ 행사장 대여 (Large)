@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef long long ll;
+typedef struct
+{
+    ll x1, y1, y2;
+    int delta;
+}Event;
+
+Event ev[6000];
+ll ypos[6000];
+int cnt[6000];
+int yidx, evidx;
+
+int y_comp(const void *, const void *);
+int ev_comp(const void *, const void *);
+
+int main()
+{
+    int n, i, j;
+    ll x1, y1, x2, y2;
+    ll dx, area, height, ey1, ey2, y;
+    int delta;
+    scanf("%d", &n);
+    for(i = 0;i < n;++i)
+    {
+        scanf("%lld %lld %lld %lld", &x1, &y1, &x2, &y2);
+        Event e1 = {x1, y1, y2, 1}, e2 = {x2, y1, y2, -1};
+        ev[evidx++] = e1;   ev[evidx++] = e2;
+        ypos[yidx++] = y1;  ypos[yidx++] = y2;
+    }
+
+    qsort((void *)ypos, yidx, sizeof(ll), y_comp);
+    qsort((void *)ev, evidx, sizeof(Event), ev_comp);
+    area = 0LL;
+    for(i = 0;i < evidx - 1;++i)
+    {
+        dx = ev[i + 1].x1 - ev[i].x1;
+        delta = ev[i].delta;
+        ey1 = ev[i].y1, ey2 = ev[i].y2;
+        for(j = 0;j < yidx;++j)
+        {
+            y = ypos[j];
+            if(ey1 <= y && y < ey2)
+                cnt[j] += delta;
+        }
+        height = 0LL;
+        for(j = 0;j < yidx - 1;++j)
+        {
+            if(cnt[j] > 0)
+                height += ypos[j + 1] - ypos[j];
+        }
+        area += height * dx;
+    }
+    printf("%lld", area);
+    return 0;
+}
+
+int y_comp(const void *v1, const void *v2)
+{
+    ll y1 = *(ll *)v1;
+    ll y2 = *(ll *)v2;
+    return y1 > y2;
+}
+
+int ev_comp(const void *v1, const void *v2)
+{
+    Event e1 = *(Event *)v1;
+    Event e2 = *(Event *)v2;
+    return e1.x1 > e2.x1;
+}

@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main()
+{
+    int N, res = 0;
+    scanf("%d", &N);
+    for (int i = 0; i < N; i++)
+    {
+        int C, K;
+        scanf("%d %d", &C, &K);
+        res += (C * K);
+    }
+    printf("%d", res);
+    return 0;
+}

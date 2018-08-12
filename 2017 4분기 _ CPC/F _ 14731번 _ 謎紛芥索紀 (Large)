@@ -1,0 +1,33 @@
+#include <stdio.h>
+#define ANS_MOD 1000000007
+long long two[32]={0,};
+
+int main()
+{
+    int N;
+    long long res=0;
+    scanf("%d",&N);
+    two[0]=2;
+    for(int i=1;i<32;i++) two[i]=(two[i-1]*two[i-1])%ANS_MOD;
+
+    for(int i=0;i<N;i++)
+    {
+        long long C,K;
+        long long su=1;
+        scanf("%lld %lld",&C,&K);
+
+        C=(C*K)%ANS_MOD;
+        K--;
+
+        for(int j=0;K!=0;j++)
+        {
+            if(K%2) su*=two[j];
+            K/=2,su%=ANS_MOD;
+        }
+
+        res+=((C*su)%ANS_MOD);
+        if(res>=ANS_MOD) res%=ANS_MOD;
+    }
+    printf("%lld",res);
+    return 0;
+}
