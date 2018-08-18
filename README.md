@@ -4,4 +4,4 @@
 <br>
 <br>
 
-- Cosmos Camp
+- COSMOS CAMP
