@@ -4,6 +4,14 @@
 <br>
 <br>
 
-- COSMOS CAMP
+- ChAOS Sham Programming Contest
+<br>
+  https://github.com/cauchaos/contest/tree/sham<br>
+<br>
+<br>
+<br>
+<br>
 
-  https://github.com/cauchaos/contest/tree/2018/2018%203%20Quarter%20_%20COSMOS%20CAMP
+- COSMOS CAMP
+<br>
+  https://github.com/cauchaos/contest/tree/real
